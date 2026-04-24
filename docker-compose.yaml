@@ -1,0 +1,16 @@
+services:
+  todo-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: todo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - todo-db
